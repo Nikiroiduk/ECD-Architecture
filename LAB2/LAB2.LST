@@ -1,0 +1,85 @@
+Turbo Assembler	 Version 4.0	    09/24/21 23:31:20	    Page 1
+LAB2.ASM
+
+      1	0000			               LAB2 SEGMENT PARA 'CODE'
+      2					         ASSUME CS:LAB2, DS:LAB2, SS:LAB2, ES:LAB2
+      3					         ORG	 100H
+      4	0100  E9 008D		         BEGIN: JMP	 MAIN
+      5	      =000A			         CONSTANT EQU 10
+      6	0103  ??			         A101 DB ?
+      7	0104  4F 4B 49 44 41 54	41+      A102   DB 'OKIDATA	PRINTER'
+      8	      20 50 52 49 4E 54	45+
+      9	      52
+     10	0113  D7		               A103   DB 215
+     11	0114  60		               A104   DB 60H
+     12	0115  E4		               A105   DB 11100100B
+     13	0116  01 45 4A 48 02 4B	4E+      A106   DB 01,'EJH',02,'KNL',04,'AQW'
+     14	      4C 04 41 51 57
+     15	0122  36 37 38 37 35 33	         A107   DB '678753'
+     16	0128  0A*(00)		         A108   DB CONSTANT	DUP(0)
+     17	0132  FDE2		               B101   DW 0FDE2H
+     18	0134  00AF		               B102   DW 10101111B
+     19	0136  0113r		               B103   DW A103
+     20	0138  0003 0005	0008 0009 +    B104   DW 3,5,8,9,12
+     21	      000C
+     22	0142  05*(0000)		         B105   DW 5 DUP(0)
+     23	014C  ????????		         C101   DD ?
+     24	0150  00004F50		         C102   DD 'OP'
+     25	0154  00007B63		         C103   DD 31587
+     26	0158  0000000F		         C104   DD A103-A102
+     27	015C  00000018 00000035	         C105   DD 24,53
+     28	0164  ????????????????	         D101   DQ ?
+     29	016C  0000000000006E65	         D102   DQ 06E65H
+     30	0174  0000000000007B63	         D103   DQ 31587
+     31	017C  ????????????????????       E101   DT ?
+     32	0186  0000000000000000594C       E102   DT 'YL'
+     33	0190			     MAIN      PROC NEAR
+     34	0190  C3			         RET
+     35	0191			     MAIN      ENDP
+     36	0191			     LAB2      ENDS
+     37					         END BEGIN
+Turbo Assembler	 Version 4.0	    09/24/21 23:31:20	    Page 2
+Symbol Table
+
+
+Symbol Name			  Type	 Value
+
+??DATE			  Text	 "09/24/21"
+??FILENAME			  Text	 "LAB2	  "
+??TIME			  Text	 "23:31:20"
+??VERSION			  Number     0400
+@CPU				  Text	 0101H
+@CURSEG			  Text	 LAB2
+@FILENAME			  Text	 LAB2
+@WORDSIZE			  Text	 2
+A101				  Byte	 LAB2:0103
+A102				  Byte	 LAB2:0104
+A103				  Byte	 LAB2:0113
+A104				  Byte	 LAB2:0114
+A105				  Byte	 LAB2:0115
+A106				  Byte	 LAB2:0116
+A107				  Byte	 LAB2:0122
+A108				  Byte	 LAB2:0128
+B101				  Word	 LAB2:0132
+B102				  Word	 LAB2:0134
+B103				  Word	 LAB2:0136
+B104				  Word	 LAB2:0138
+B105				  Word	 LAB2:0142
+BEGIN				  Near	 LAB2:0100
+C101				  Dword	 LAB2:014C
+C102				  Dword	 LAB2:0150
+C103				  Dword	 LAB2:0154
+C104				  Dword	 LAB2:0158
+C105				  Dword	 LAB2:015C
+CONSTANT			  Number     000A
+D101				  Qword	 LAB2:0164
+D102				  Qword	 LAB2:016C
+D103				  Qword	 LAB2:0174
+E101				  Tbyte	 LAB2:017C
+E102				  Tbyte	 LAB2:0186
+MAIN				  Near	 LAB2:0190
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+LAB2				  16  0191 Para	  none	  CODE
+
