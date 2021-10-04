@@ -1,0 +1,4 @@
+#ignore .extension
+*.exe
+*.obj
+*.map
