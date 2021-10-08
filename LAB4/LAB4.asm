@@ -11,6 +11,8 @@ begin: jmp main
        Tens db ?
        Ones db ?
        ;------------------------------------------------------------
+       count dw ?
+       character dw ?
        Z dw ?
        X dw ?
        Y dw ?
@@ -26,7 +28,7 @@ MAIN proc near
      ; Variant №5
 ; Exercise 1
      ; 5A4B
-     ;call EXERCISE1
+     call EXERCISE1
 ;
 ; Exercise 2
      ; Z = (A – B) / 5, X
@@ -44,14 +46,28 @@ MAIN proc near
      push Z
      push X
      call EXERCISE2
-;
+     pop ax
+     mov data,ax
+     call DISP
+     call EXERCISE2PART2
+
+     mov count,2
+     mov ax,Y2
+     mov character,ax
+     call DISPchars
+;    
+     mov ah,04CH
+     int 21H
      ret
 MAIN endp
 
 EXERCISE1 proc near
-          
+          ; 0, if i = 0 and i + 1 = 0
+          ; 1, if i = 0 and i + 1 = 1
+          ; 2, if i = 1 and i + 1 = 0
+          ; 3, if i = 1 and i + 1 = 1,
           mov ax,5A4BH
-          and ax,0000110000000000B ; ax * mask == 0000 XX00 0000 0000
+          and ax,0000110000000000B ; ax * mask  == 0000 XX00 0000 0000
           cmp ax,0
           jz zz                    ; jump if ax == 0000 0000 0000 0000
           cmp ax,400H
@@ -75,7 +91,6 @@ fin:      mov data,ax
 EXERCISE1 endp
 
 EXERCISE2 proc near
-
           pop address
           pop X
           pop Z
@@ -90,37 +105,69 @@ EXERCISE2 proc near
           cbw
           mov Y1,ax
 
-          ; Y = 0, если Z < 0 и X < 0
-          ; Y = 1, если Z = 0 и X = 0
-          ; Y = 2, если Z > 0 и X > 0
-          ; Y = 3, в противном случае
-
-
           push Y1
-          call EXERCISE2PART2
 
+          ; Y = 0, if Z < 0 and X < 0
+          ; Y = 1, if Z = 0 and X = 0
+          ; Y = 2, if Z > 0 and X > 0
+          ; else Y = 3
+          cmp Z,0
+          jz zez    ; if Z and X = 0
+          jl zlz    ; if Z and X < 0
+          jg zhz    ; if Z and X > 0
+
+zez:      cmp X,0
+          jz xez
+          jmp els
+xez:      mov Y,1
+          jmp finex2
+
+zlz:      cmp X,0
+          jl xlz
+          jmp els
+xlz:      mov Y,0
+          jmp finex2
+
+zhz:      cmp X,0
+          jg xhz
+          jmp els
+xhz:      mov Y,2
+          jmp finex2
+
+els:      mov Y,3   ; else
+          jmp finex2
+
+finex2:   push Y
           push address
           ret
-
 EXERCISE2 endp
 
 EXERCISE2PART2 proc near
-
                pop address
                pop Y1
-               ; Y2 = AA, если Y1 = 0
-               ; Y2 = BB, если Y1 <> 0
+
+               ; Y2 = AA, if Y1 = 0
+               ; Y2 = BB, if Y1 <> 0
                cmp Y1,0
-               jz ez
-               jnz nz
-               ;TODO: output proc
+               jz ez       ; if Y1 = 0
+               jnz nz      ; if Y1 <> 0
 ez:            mov Y2,'AA'
 nz:            mov Y2,'BB'
 
                push address
-               ret
 
+               ret
 EXERCISE2PART2 endp
+
+DISPchars proc near
+          mov cx,count
+prnt:     mov dx,character
+          mov ah,02H
+          int 21H
+          inc dx
+          loop prnt
+          ret
+DISPchars endp
 
 DISP proc near
      mov ax,data
@@ -133,8 +180,8 @@ DISP proc near
      neg ax
      mov my_s,'-'
      jmp @m2
-     @m1: mov ax,data
-     @m2: cwd
+@m1: mov ax,data
+@m2: cwd
      mov bx,10000
      idiv bx
      mov T_Th,al
@@ -158,32 +205,32 @@ DISP proc near
      mov ah,02h
      mov dl,my_s
      int 21h
-     @m500: cmp T_TH,0
+@m500: cmp T_TH,0
      je @m200
  
      mov ah,02h
      mov dl,T_Th
      add dl,48
      int 21h
-     @m200: cmp T_Th,0
+@m200: cmp T_Th,0
      jne @m300
      cmp Th,0
      je @m400
-     @m300: mov ah,02h
+@m300: mov ah,02h
      mov dl,Th
      add dl,48
      int 21h
-     @m400: cmp T_TH,0
+@m400: cmp T_TH,0
      jne @m600
      cmp Th,0
      jne @m600
      cmp hu,0
      je @m700
-     @m600: mov ah,02h
+@m600: mov ah,02h
      mov dl,Hu
      add dl,48
      int 21h
-     @m700: cmp T_TH,0
+@m700: cmp T_TH,0
      jne @m900
      cmp Th,0
      jne @m900
@@ -191,11 +238,11 @@ DISP proc near
      jne @m900
      cmp Tens,0
      je @m950
-     @m900: mov ah,02h
+@m900: mov ah,02h
      mov dl,Tens
      add dl,48
      int 21h
-     @m950: mov ah,02h
+@m950: mov ah,02h
      mov dl,Ones
      add dl,48
      int 21h
