@@ -1,3 +1,4 @@
 ### Lab 4
 #### Variant №5
-![image](https://user-images.githubusercontent.com/33375292/136559282-be5aaa38-e7b7-4c9a-8cec-1a91530723a4.png)
+![image](https://user-images.githubusercontent.com/33375292/137090729-41145bf6-0756-4b7d-813e-f33616bd7a1b.png)
+
