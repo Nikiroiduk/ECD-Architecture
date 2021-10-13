@@ -65,17 +65,17 @@ EXERCISE1 proc near
           ; 0, if i = 0 and i + 1 = 0
           ; 1, if i = 0 and i + 1 = 1
           ; 2, if i = 1 and i + 1 = 0
-          ; 3, if i = 1 and i + 1 = 1,
+          ; 3, if i = 1 and i + 1 = 1, i = variant = 5
           mov ax,5A4BH
-          and ax,0000110000000000B ; ax * mask  == 0000 XX00 0000 0000
+          and ax,0000000000110000B ; ax * mask  == 0000 0000 00XX 0000
           cmp ax,0
           jz zz                    ; jump if ax == 0000 0000 0000 0000
-          cmp ax,400H
-          jz zo                    ; jump if ax == 0000 0100 0000 0000
-          cmp ax,800H
-          jz oz                    ; jump if ax == 0000 1000 0000 0000
-          cmp ax,0C00H
-          jz oo                    ; jump if ax == 0000 1100 0000 0000
+          cmp ax,10H
+          jz zo                    ; jump if ax == 0000 0000 0001 0000
+          cmp ax,20H
+          jz oz                    ; jump if ax == 0000 0000 0010 0000
+          cmp ax,30H
+          jz oo                    ; jump if ax == 0000 0000 0011 0000
 
 zz:       mov ax,0
           jmp fin
