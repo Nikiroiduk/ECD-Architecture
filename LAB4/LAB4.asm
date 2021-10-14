@@ -23,16 +23,16 @@ begin: jmp main
        A1 dw ?
        A2 db ?
        address dw ?
+       addressSupp dw ?
        variant db ?
-       num dw ?
 
 MAIN proc near
      ; Variant №5
-; Exercise 1
+
+     ; Exercise 1
      ; 5A4B
      call EXERCISE1
-;
-; Exercise 2
+     ; Exercise 2
      ; Z = (A – B) / 5, X
      mov A,10
      mov B,3
@@ -44,7 +44,7 @@ MAIN proc near
      idiv bl
      cbw
      mov Z,ax
-     ;
+     
      push Z
      push X
      call EXERCISE2
@@ -57,79 +57,74 @@ MAIN proc near
      mov ax,Y2
      mov character,ax
      call DISPchars
-;    
+
      mov ah,04CH
      int 21H
      ret
 MAIN endp
-
-GENBITS proc near
-
-        pop address
-        pop num
-        mov variant,5
-        mov bx,0
-        mov bx,num
-        mov cl,variant
-        rcl bx,cl
-
-        push bx
-        push address
-        ret
-
-GENBITS endp
 
 EXERCISE1 proc near
           ; 0, if i = 0 and i + 1 = 0
           ; 1, if i = 0 and i + 1 = 1
           ; 2, if i = 1 and i + 1 = 0
           ; 3, if i = 1 and i + 1 = 1, i = variant = 5
-          
-          ;get mask
-          mov num,3
-          push num
+          pop address
+
+          mov variant,5
           call GENBITS
+
           pop bx
+          mov ax,5A4BH   ; 5A4B       == 0101 1010 0100 1011
+          and ax,bx      ; ax * mask  == 0000 0000 0XX0 0000
 
-          mov ax,5A4BH             ; 5A4B       == 0101 1010 0100 1011
-          and ax,bx                ; ax * mask  == 0000 0000 0XX0 0000
+          mov cx,3
+          cmp ax,bx
+          jz fin         ; jump if ax == 0000 0000 0110 0000
 
+          pop bx
+          mov cx,2
+          cmp ax,bx
+          jz fin         ; jump if ax == 0000 0000 0100 0000
+
+          pop bx
+          mov cx,1
+          cmp ax,bx
+          jz fin         ; jump if ax == 0000 0000 0010 0000
+
+          mov cx,0       
           cmp ax,0
-          jz zz                    ; jump if ax == 0000 0000 0000 0000
+          jz fin         ; jump if ax == 0000 0000 0000 0000
 
-          mov num,1
-          push num
-          call GENBITS
-          pop bx
-          cmp ax,bx
-          jz zo                    ; jump if ax == 0000 0000 0010 0000
-
-          mov num,2
-          push num
-          call GENBITS
-          pop bx
-          cmp ax,bx
-          jz oz                    ; jump if ax == 0000 0000 0100 0000
-
-          mov num,3
-          push num
-          call GENBITS
-          pop bx
-          cmp ax,bx
-          jz oo                    ; jump if ax == 0000 0000 0110 0000
-
-zz:       mov ax,0
-          jmp fin
-zo:       mov ax,1
-          jmp fin
-oz:       mov ax,2
-          jmp fin
-oo:       mov ax,3
-          jmp fin
-fin:      mov data,ax
+fin:      mov data,cx
           call DISP 
+
+          push address
           ret
 EXERCISE1 endp
+
+GENBITS proc near
+
+        pop addressSupp
+
+        mov bx,1
+        mov cl,variant
+        rcl bx,cl
+        push bx
+
+        mov bx,2
+        mov cl,variant
+        rcl bx,cl
+        push bx
+
+        mov bx,3
+        mov cl,variant
+        rcl bx,cl
+        push bx
+
+        push addressSupp
+        ret
+
+GENBITS endp
 
 EXERCISE2 proc near
           pop address
@@ -145,7 +140,6 @@ EXERCISE2 proc near
           idiv bl
           cbw
           mov Y1,ax
-
           push Y1
 
           ; Y = 0, if Z < 0 and X < 0
