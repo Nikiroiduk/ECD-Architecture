@@ -28,9 +28,9 @@ MAIN proc near
      ; Exercise 2
      ; Variant №5
      ; Z = (A – B) / 5, X
-     mov A,10
+     mov A,-6
      mov B,3
-     mov X,5
+     mov X,-2
      ; calc Z
      mov ax,A
      sub ax,B
@@ -63,7 +63,7 @@ EXERCISE2 proc near
           pop Z
 
           ; Y1=(100+A1)/A2
-          mov A1,12
+          mov A1,-100
           mov A2,5
           mov ax,A1
           add ax,100
@@ -117,11 +117,14 @@ EXERCISE2PART2 proc near
                ; Y2 = BB, if Y1 <> 0
                cmp Y1,0
                jz ez       ; if Y1 = 0
-               jnz nz      ; if Y1 <> 0
+               jne nz      ; if Y1 <> 0
 ez:            mov Y2,'AA'
-nz:            mov Y2,'BB'
+               jmp final
 
-               push address
+nz:            mov Y2,'BB'
+               jmp final
+
+final:         push address
                ret
 EXERCISE2PART2 endp
 
