@@ -47,18 +47,17 @@ EXERCISE1 proc near
           jz fin         ; jump if ax == 0000 0000 0110 0000
 
           pop bx
-          mov cx,2
+          mov cx,1
           cmp ax,bx
           jz fin         ; jump if ax == 0000 0000 0100 0000
 
           pop bx
-          mov cx,1
+          mov cx,2
           cmp ax,bx
           jz fin         ; jump if ax == 0000 0000 0010 0000
 
-          mov cx,0       
-          cmp ax,0
-          jz fin         ; jump if ax == 0000 0000 0000 0000
+          mov cx,0
+          jmp fin        ; jump if ax == 0000 0000 0000 0000
 
 fin:      mov data,cx
           call DISP 

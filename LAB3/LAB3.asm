@@ -82,6 +82,7 @@ MAIN proc near
      call DISP
      ret
 MAIN endp
+
 DISP proc near
      mov ax,data
      and ax,1000000000000000b

@@ -86,24 +86,25 @@ zez:      cmp X,0
           jz xez
           jmp els
 xez:      mov Y,1
-          jmp finex2
+          jmp fin
 
 zlz:      cmp X,0
           jl xlz
           jmp els
 xlz:      mov Y,0
-          jmp finex2
+          jmp fin
 
 zhz:      cmp X,0
           jg xhz
           jmp els
 xhz:      mov Y,2
-          jmp finex2
+          jmp fin
 
 els:      mov Y,3   ; else
-          jmp finex2
+          jmp fin
 
-finex2:   push Y
+fin:      push Y
+
           push address
           ret
 EXERCISE2 endp
