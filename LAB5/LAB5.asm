@@ -15,11 +15,12 @@ begin: jmp main
        b dw ?
        r dw 0
        x dw ?
+       wh dw ?
+       fr dw ?
 
 MAIN proc near
      ; Variant №5
      ; x^3 + 4 [-1, 1] 50
-
      mov cx,25
      mov a,-25
      mov b,25
@@ -30,21 +31,17 @@ lp:  ; a^3 + 4
      imul a
      add ax,4
      inc a
-
      mov bx,ax
-
      ; b^3 + 4
      mov ax,b
      imul b
      imul b
      add ax,4
      dec b
-
      ; (a^3 + 4) + (b^3 + 4)
      add ax,bx
      ; add to result
      add r,ax
-
      ; -2 -1 (0 0) 1 2
      ;         ↓
      ; -2 -1  (0)  1 2
@@ -55,13 +52,41 @@ last:add r,4
      jmp e
 e:   loop lp
 
-     ; 204 / 25 = 8.16
+     ; 204 / 25 = 8.16 or 8 * (4 / 25)
      mov ax,r
      mov bl,25
      idiv bl
+
+     mov dl,ah 
      cbw
+     mov wh,ax 
+     mov ax,0
+     mov al,dl
+     cbw
+     mov fr,ax 
+
+     ; output
+     mov ax,wh
      mov data,ax
      call DISP
+     mov dx,'*'
+     mov ah,02H
+     int 21H
+     mov dx,'('
+     mov ah,02H
+     int 21H
+     mov ax,fr
+     mov data,ax
+     call DISP
+     mov dx,'/'
+     mov ah,02H
+     int 21H
+     mov ax,25
+     mov data,ax
+     call DISP
+     mov dx,')'
+     mov ah,02H
+     int 21H
 
      mov ah,04CH
      int 21H
@@ -100,17 +125,6 @@ DISP proc near
      mov Tens,al
      mov Ones,ah
      cmp my_s,'+'
-     je @m500
-     mov ah,02h
-     mov dl,my_s
-     int 21h
-@m500: cmp T_TH,0
-     je @m200
- 
-     mov ah,02h
-     mov dl,T_Th
-     add dl,48
-     int 21h
 @m200: cmp T_Th,0
      jne @m300
      cmp Th,0
@@ -144,16 +158,7 @@ DISP proc near
 @m950: mov ah,02h
      mov dl,Ones
      add dl,48
-     int 21h
-     mov ah,02h
-     mov dl,10
-     int 21h
-     mov ah,02h
- 
-     mov dl,13
-     int 21h
-     mov ah,08
-     int 21h
+     int 21H
      ret
 DISP endp
 
