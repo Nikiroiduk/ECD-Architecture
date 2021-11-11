@@ -2,7 +2,6 @@ LAB5 segment 'code'
 assume cs:LAB5, ds:LAB5, ss:LAB5, es:LAB5
 org 100h
 begin: jmp main
-
        data dw ?
        my_s db '+'
        T_Th db ?
@@ -17,7 +16,6 @@ begin: jmp main
        x dw ?
        wh dw ?
        fr dw ?
-
 MAIN proc near
      ; Variant №5
      ; x^3 + 4 [-1, 1] 50
@@ -52,7 +50,7 @@ last:add r,4
      jmp e
 e:   loop lp
 
-     ; 204 / 25 = 8.16 or 8 * (4 / 25)
+     ; 204 / 25 = 8.16 or 8 + (4 / 25)
      mov ax,r
      mov bl,25
      idiv bl
@@ -69,7 +67,7 @@ e:   loop lp
      mov ax,wh
      mov data,ax
      call DISP
-     mov dx,'*'
+     mov dx,'+'
      mov ah,02H
      int 21H
      mov dx,'('
