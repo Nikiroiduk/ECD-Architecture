@@ -86,44 +86,28 @@ con: dec si
      int 21H
      ret
 
-; printNum proc
-;      mov ah,02H
-;      mov dl,0AH
-;      int 21H
-;      mov ax,outp
-;      aam 
-;      add ax,3030H
-;      mov dl,ah 
-;      mov dh,al 
-;      mov ah,02H
-;      int 21H
-;      mov dl,dh 
-;      int 21H
-;      ret
-; printNum endp
-
 printNum proc
-     push    ax
-     push    bx
-     push    cx
-     push    dx
-     mov     bx,10 
-     mov     cx,0  
-fr:  xor     dx,dx 
-     div     bx
-     add     dl,'0'
-     push    dx    
-     inc     cx    
-     test    ax,ax 
-jnz  fr            
-show:mov     ah,02H
-     pop     dx    
-     int     21H   
-     loop    show  
-     pop     dx
-     pop     cx
-     pop     bx
-     pop     ax
+     push ax
+     push bx
+     push cx
+     push dx
+     mov bx,10 
+     mov cx,0  
+fr:  xor dx,dx 
+     div bx
+     add dl,'0'
+     push dx    
+     inc cx    
+     test ax,ax 
+     jnz fr            
+show:mov ah,02H
+     pop dx    
+     int 21H   
+     loop show  
+     pop dx
+     pop cx
+     pop bx
+     pop ax
      ret
 printNum endp
 
