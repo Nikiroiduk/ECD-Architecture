@@ -13,7 +13,8 @@ org 100h
      max db 0
      outp dw ?
 .code
-main:
+begin: jmp main
+main proc near
      ; Variant №5
      ; Подсчитать максимальную длину цепочки, состоящую из единиц,
      ; в элементе данных, определенном директивой DT.
@@ -85,6 +86,7 @@ con: dec si
      mov ah,04CH
      int 21H
      ret
+main endp
 
 printNum proc
      push ax
@@ -111,4 +113,4 @@ show:mov ah,02H
      ret
 printNum endp
 
-end main
+end begin
