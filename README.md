@@ -5,3 +5,4 @@
  * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/LAB4)
  * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/LAB5)
  * [Lab 6](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/LAB6)
+ * [Lab 7](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/LAB7)
