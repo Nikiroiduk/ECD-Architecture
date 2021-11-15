@@ -1,15 +1,14 @@
+LAB7 segment 'code'
+assume cs:LAB7, ds:LAB7, ss:LAB7, es:LAB7
 org 100h
-.model small
-.stack 100h
-.data
-.code
 begin: jmp main
+   
 main proc near
-     ; Variant №5
+    ; Variant №5
 
-     mov ah,04CH
-     int 21H
-     ret
+    int 21H
+    ret
 main endp
 
+LAB7 ends
 end begin
