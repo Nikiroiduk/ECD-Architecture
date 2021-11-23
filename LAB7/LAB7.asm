@@ -2,7 +2,6 @@ LAB7 segment 'code'
 assume cs:LAB7, ds:LAB7, ss:LAB7, es:LAB7
 org 100h
 begin: jmp main
-    ; numbers in names is an evil...
     ; problems with next numbers: 66, 14, 32, 65, 75, 80, 84, 89, 97, 98
     ; ASCII                       B   SO  spc A   K   P   T   Y   a   b
     planes db 22,'Boeing        ',91,'Boeing        '
