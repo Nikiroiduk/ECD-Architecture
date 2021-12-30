@@ -1,6 +1,6 @@
-﻿## ECD-Architecture
+# ECD-Architecture
  
-<details><summary>First semester</summary>
+<details><summary>Fall semester 2021</summary>
 
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/LAB2) - Data definition. Assembler program structure
  * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/LAB3) - General purpose commands. Arithmetic commands
@@ -10,4 +10,7 @@
  * [Lab 7](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/LAB7) - Row and table processing commands
 
 </details>
- 
+
+<details><summary>Spring semester 2022</summary>
+
+</details>
