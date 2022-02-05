@@ -74,8 +74,15 @@ numberIn proc
     imul bl
 
     mov bl,[input+3]
-    sub bl,30H
 
+    cmp bl,30H
+    jge ok
+    mov bl,0AH
+    idiv bl
+    mov salary,al
+    ret
+ok:
+    sub bl,30H
     add al,bl
     mov salary,al
     ret

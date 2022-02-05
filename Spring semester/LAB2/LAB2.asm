@@ -49,50 +49,61 @@ main proc near
     ; свое место в список из 25 упорядоченных по возрастанию элементов.
 
     call prtList
-    
     returnMacro
     lea dx,helper
     int 21H
     call numberIn
-    
     indexMacro num
     returnMacro
-
-    call prtList  
+    call prtListUpdated  
     ret
 main endp
 
-;TODO: переписать эту штуку для вывода списка (добавления эемента на его индекс)
 prtList proc
     mov cx,25
     mov bp,0
-    meh:
-    cmp bp,result
-    jnz cnt
-    cmp num,0
-    jz cnt
-    jmp fine
-    strangething:
-    mov al,num
-    mov data,al
-    call prntNum
-    jmp fin3
-    fine:
-    mov al,num
-    mov data,al
-    call prntNum
-    spaceMacro
-    cnt:
+    lp:
     mov al,list + bp
     mov data,al
     call prntNum
     spaceMacro
     inc bp
-    cmp bp,result
-    jz strangething
-    fin3: loop meh
+    loop lp
     ret
 prtList endp
+
+prtListUpdated proc
+    mov cx,25
+    mov bp,0
+    lp1:
+    cmp bp,result
+    jz equals
+    continue:
+    mov al,list + bp
+    mov data,al
+    call prntNum
+    spaceMacro
+    inc bp
+    loop lp1
+    cmp bp,result
+    jz equals1
+    jmp fin3
+
+    equals:
+    mov al,num
+    mov data,al
+    call prntNum
+    spaceMacro
+    jmp continue
+    
+    equals1:
+    mov al,num
+    mov data,al
+    call prntNum
+    spaceMacro
+    fin3:
+    ret
+prtListUpdated endp
 
 prntNum proc
     mov al,data
