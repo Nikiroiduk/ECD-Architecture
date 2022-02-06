@@ -29,19 +29,19 @@ LAB2 segment 'code'
 assume cs:LAB2, ds:LAB2, ss:LAB2, es:LAB2
 org 100h
 begin: jmp main
-list db 11, 12, 14, 16, 21
-     db 23, 23, 23, 31, 32
-     db 33, 39, 41, 43, 45
-     db 45, 48, 48, 54, 56
-     db 58, 78, 82, 82, 98
-input db 3,3 dup(?)
-num db 0
-data db ?
-result dw ?
-helper db 'Enter your number: $'
-newLine db 0AH, 20H, '$'
-tens db ?
-ones db ?
+    list db 11, 12, 14, 16, 21
+        db 23, 23, 23, 31, 32
+        db 33, 39, 41, 43, 45
+        db 45, 48, 48, 54, 56
+        db 58, 78, 82, 82, 98
+    input db 3,3 dup(?)
+    num db 0
+    data db ?
+    result dw ?
+    helper db 'Enter your number: $'
+    newLine db 0AH, 0DH, '$'
+    tens db ?
+    ones db ?
 
 main proc near
     ; Variant №5
