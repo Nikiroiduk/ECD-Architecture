@@ -14,5 +14,6 @@
 <details><summary>Spring semester 2022</summary>
 
  * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB1) - Row and table processing commands
+ * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB2) - Macros
  
 </details>
