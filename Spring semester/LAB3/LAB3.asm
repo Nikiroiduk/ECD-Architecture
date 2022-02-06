@@ -20,7 +20,7 @@ endm
 
 LAB3 segment 'code'
 assume cs:LAB3, ds:LAB3, ss:LAB3, es:LAB3
-org 100h
+org 100H
 begin: jmp main
     dataWord dw ?
     my_s db '+'
@@ -139,9 +139,9 @@ main endp
 
 numberIn proc near
     mov num,0
-    mov ah,0ah
+    mov ah,0AH
     lea dx,input
-    int 21h
+    int 21H
     mov mnoj,1
     mov cl,byte ptr input+1
     mov ch,0
@@ -149,7 +149,7 @@ numberIn proc near
     add bp,1
     @m1000:
     mov al,byte ptr input+bp
-    sub al,30h
+    sub al,30H
     cbw
     imul mnoj
     add num,ax
@@ -176,8 +176,8 @@ DISP proc near
      neg ax
      mov my_s,'-'
      jmp @m2
-@m1: mov ax,dataWord
-@m2: cwd
+     @m1: mov ax,dataWord
+     @m2: cwd
      mov bx,10000
      idiv bx
      mov T_Th,al
@@ -197,25 +197,35 @@ DISP proc near
      mov Tens,al
      mov Ones,ah
      cmp my_s,'+'
-@m200: cmp T_Th,0
+     je @m500
+     mov ah,02H
+     mov dl,my_s
+     int 21H
+     @m500: cmp T_TH,0
+     je @m200
+     mov ah,02H
+     mov dl,T_Th
+     add dl,48
+     int 21H
+     @m200: cmp T_Th,0
      jne @m300
      cmp Th,0
      je @m400
-@m300: mov ah,02h
+     @m300: mov ah,02H
      mov dl,Th
      add dl,48
-     int 21h
-@m400: cmp T_TH,0
+     int 21H
+     @m400: cmp T_TH,0
      jne @m600
      cmp Th,0
      jne @m600
      cmp hu,0
      je @m700
-@m600: mov ah,02h
+     @m600: mov ah,02H
      mov dl,Hu
      add dl,48
-     int 21h
-@m700: cmp T_TH,0
+     int 21H
+     @m700: cmp T_TH,0
      jne @m900
      cmp Th,0
      jne @m900
@@ -223,13 +233,16 @@ DISP proc near
      jne @m900
      cmp Tens,0
      je @m950
-@m900: mov ah,02h
+     @m900: mov ah,02H
      mov dl,Tens
      add dl,48
-     int 21h
-@m950: mov ah,02h
+     int 21H
+     @m950: mov ah,02H
      mov dl,Ones
      add dl,48
+     int 21H
+     mov ah,02H
+     mov dl,' '
      int 21H
      pop dx
      pop cx
