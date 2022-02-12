@@ -29,7 +29,7 @@ begin: jmp main
     Hu db ?
     Tens db ?
     Ones db ?
-    input db 7,7 DUP(?)
+    input db 7,7 dup(?)
     dataev dw 0
     mnoj dw ?
 
@@ -47,7 +47,7 @@ begin: jmp main
 
 main proc near
     ; Variant №5
-    ; Z = S { k*X[k+1]/(k+1)-X[2k+1]*X[N+1-k]}
+    ; Z = S{ k*X[k+1]/(k+1)-X[2k+1]*X[N+1-k]}
     ; N=4 k=1,2,3
 
     printLineMacro inputHelper
@@ -71,7 +71,7 @@ output:
     push cx
     mov ax,[si]
     mov dataWord,ax
-    call DISP
+    call disp
     add si,2
     spaceMacro
     pop cx
@@ -133,7 +133,7 @@ result:
 
     mov ax,sum
     mov dataWord,ax
-    call DISP
+    call disp
     ret
 main endp
 
@@ -161,7 +161,7 @@ numberIn proc near
     ret
 numberIn endp
 
-DISP proc near
+disp proc near
      push ax
      push bx
      push cx
@@ -249,7 +249,7 @@ DISP proc near
      pop bx
      pop ax
      ret
-DISP endp
+disp endp
 
 LAB3 ends
 end begin
