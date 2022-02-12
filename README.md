@@ -16,5 +16,6 @@
  * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB1) - Row and table processing commands
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB2) - Macros
  * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB3) - 1D arrays
+ * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB4) - Arithmetic operations on matrices
  
 </details>
