@@ -37,10 +37,10 @@ assume cs:LAB4, ds:LAB4, ss:LAB4, es:LAB4
 org 100H
 begin: jmp main
     cols dw 3
-    rows dw 3
-    arr dw 100 dup(?)
+    rows dw 5
+    array dw 100 dup(?)
 
-    newLine db 0AH, 0DH, '$'
+    newLineHelper db 0AH, 0DH, '$'
     inputHelperStart db 'Enter an element [$'
     inputHelperEnd db ']: $'
     outputHelper db 'Your array:$'
@@ -51,21 +51,22 @@ begin: jmp main
 
     buffer db 7, 7 dup(?)
     dataWord dw 0
-    mnoj dw ?
+    multiplier dw ?
     rowSize dw ?
     arrSize dw ?
 
     data dw ?
-    my_s db '+'
-    T_Th db ?
-    Th db ?
-    Hu db ?
-    Tens db ?
-    Ones db ?
+    sign db '+'
+    tensThousands db ?
+    thousands db ?
+    hundreds db ?
+    tens db ?
+    ones db ?
 
 main proc near
     ; Variant №5
     ; Подпрограмма суммирования слов, делящихся на 5, в нечетных строках.
+
     mov ax, rows
     mov bx, cols
     imul bx
@@ -76,7 +77,7 @@ main proc near
     mov rowSize, ax
 
     mov cx, arrSize
-    lea si, arr
+    lea si, array
     mov bx, 0
 input:
     push cx
@@ -89,9 +90,9 @@ input:
     inc bx
     loop input
 
-    printLineMacro newLine
+    printLineMacro newLineHelper
     printLineMacro outputHelper
-    printLineMacro newLine
+    printLineMacro newLineHelper
     mov cx, rows
     mov bx, 0
 nRow:
@@ -99,20 +100,20 @@ nRow:
     mov cx, cols
     mov si, 0
 nElem:
-    mov ax, arr[bx][si]
+    mov ax, array[bx][si]
     mov data, ax
     call numberOut
     spaceMacro
     add si, 2
     loop nElem
     add bx, rowSize
-    printLineMacro newLine
+    printLineMacro newLineHelper
     pop cx
     loop nRow
 
-    printLineMacro newLine
+    printLineMacro newLineHelper
     printLineMacro additionalHelper
-    printLineMacro newLine
+    printLineMacro newLineHelper
     mov bx, 0
     mov cx, rows
     mov dx, 0
@@ -127,7 +128,7 @@ calc:
     mov cx, cols
     mov si, 0
 elem:
-    mov ax, arr[bx][si]
+    mov ax, array[bx][si]
     push ax
     push bx
     cwd
@@ -141,10 +142,12 @@ elem:
     mov data, ax
     call numberOut
     spaceMacro
+    cmp cx, 0
+    jnz false
+    printLineMacro newLineHelper
 false:
     add si, 2
     loop elem
-    printLineMacro newLine
     add bx, rowSize
     add bx, rowSize
     pop cx
@@ -152,7 +155,7 @@ false:
     cmp cx, 0
     jge calc
 
-    printLineMacro newLine
+    printLineMacro newLineHelper
     printLineMacro resultHelper
     mov ax, sum
     mov data, ax
@@ -174,7 +177,7 @@ numberOut proc near
     jne @m1
     mov ax, data
     neg ax
-    mov my_s, '-'
+    mov sign, '-'
     jmp @m2
 @m1:
     mov ax, data
@@ -182,73 +185,73 @@ numberOut proc near
     cwd
     mov bx, 10000
     idiv bx
-    mov T_Th, al
+    mov tensThousands, al
     mov ax, dx
     cwd
     mov bx, 1000
     idiv bx
-    mov Th, al
+    mov thousands, al
     mov ax, dx
     mov bl, 100
     idiv bl
-    mov Hu, al
+    mov hundreds, al
     mov al, ah
     cbw
     mov bl, 10
     idiv bl
-    mov Tens, al
-    mov Ones, ah
-    cmp my_s, '+'
+    mov tens, al
+    mov ones, ah
+    cmp sign, '+'
     je @m500
     mov ah, 02H
-    mov dl, my_s
+    mov dl, sign
     int 21H
 @m500:
-    cmp T_TH, 0
+    cmp tensThousands, 0
     je @m200
     mov ah, 02H
-    mov dl, T_Th
+    mov dl, tensThousands
     add dl, 30H
     int 21H
 @m200:
-    cmp T_Th, 0
+    cmp tensThousands, 0
     jne @m300
-    cmp Th, 0
+    cmp thousands, 0
     je @m400
 @m300:
     mov ah, 02H
-    mov dl, Th
+    mov dl, thousands
     add dl, 30H
     int 21H
 @m400:
-    cmp T_TH, 0
+    cmp tensThousands, 0
     jne @m600
-    cmp Th, 0
+    cmp thousands, 0
     jne @m600
-    cmp hu, 0
+    cmp hundreds, 0
     je @m700
 @m600:
     mov ah, 02H
-    mov dl, Hu
+    mov dl, hundreds
     add dl, 30H
     int 21H
 @m700:
-    cmp T_TH, 0
+    cmp tensThousands, 0
     jne @m900
-    cmp Th, 0
+    cmp thousands, 0
     jne @m900
-    cmp Hu, 0
+    cmp hundreds, 0
     jne @m900
-    cmp Tens, 0
+    cmp tens, 0
     je @m950
 @m900:
     mov ah, 02H
-    mov dl, Tens
+    mov dl, tens
     add dl, 30H
     int 21H
 @m950:
     mov ah, 02H
-    mov dl, Ones
+    mov dl, ones
     add dl, 30H
     int 21H
     pop dx
@@ -267,7 +270,7 @@ numberIn proc near
     mov ah, 0AH
     lea dx, buffer
     int 21H
-    mov mnoj, 1
+    mov multiplier, 1
     mov cl, byte ptr buffer + 1
     mov ch, 0
     mov bp, cx
@@ -276,14 +279,14 @@ numberIn proc near
     mov al, byte ptr buffer + bp
     sub al, 30H
     cbw
-    imul mnoj
+    imul multiplier
     add dataWord, ax
     mov ax, 10
-    imul mnoj
-    mov mnoj, ax
+    imul multiplier
+    mov multiplier, ax
     sub bp, 1
     loop @m1000
-    printLineMacro newLine
+    printLineMacro newLineHelper
     pop dx
     pop cx
     pop bx
