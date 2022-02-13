@@ -77,7 +77,7 @@ main proc near
     mov currentMode, al
 
     ; mouse initialization
-    mov ax, 0000H
+    mov ax, 00H
     int 33H
 
     ; number of mouse buttons 
@@ -109,7 +109,7 @@ main proc near
 
 
 update:
-    mov ax, 0003H
+    mov ax, 03H
     int 33H
     test bx,00000001B
     jne lmbPressed
