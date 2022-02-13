@@ -58,7 +58,7 @@ begin: jmp main
     Xcoord db ?
     Ycoord db ?
 
-    MN db 8
+    const db 8
     stateString db 11 dup(?)
 
 main proc near
@@ -98,15 +98,9 @@ main proc near
     printSymbolMacro al
     mov pressedKey, al
 
-    ; turn off cursor
-    mov ah, 01H
-    mov ch, 20H
-    int 10H
-
     ; turn on cursor
     mov ax, 01H
     int 33H
-
 
 update:
     mov ax, 03H
@@ -133,10 +127,10 @@ mmbPressed:
     mov mmb, 1
 continue:
     mov ax,cx
-    idiv mn
+    idiv const
     mov Xcoord,al
     mov ax,dx
-    idiv mn
+    idiv const
     mov Ycoord,al
     call formString
     call stringOutputCoordinates
