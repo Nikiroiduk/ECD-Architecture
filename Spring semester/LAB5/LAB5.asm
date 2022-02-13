@@ -58,7 +58,7 @@ begin: jmp main
     Xcoord db ?
     Ycoord db ?
 
-    const db 8
+    textModeTranslation db 8
     stateString db 11 dup(?)
 
 main proc near
@@ -127,10 +127,10 @@ mmbPressed:
     mov mmb, 1
 continue:
     mov ax,cx
-    idiv const
+    idiv textModeTranslation
     mov Xcoord,al
     mov ax,dx
-    idiv const
+    idiv textModeTranslation
     mov Ycoord,al
     call formString
     call stringOutputCoordinates
