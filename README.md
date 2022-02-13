@@ -17,5 +17,6 @@
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB2) - Macros
  * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB3) - 1D arrays
  * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB4) - Arithmetic operations on matrices
+ * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring%20semester/LAB5) - Programming the mouse
  
 </details>
