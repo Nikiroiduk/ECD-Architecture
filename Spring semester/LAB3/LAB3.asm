@@ -47,7 +47,7 @@ begin: jmp main
 
 main proc near
     ; Variant №5
-    ; Z = S{ k*X[k+1]/(k+1)-X[2k+1]*X[N+1-k]}
+    ; Z = S{k*X[k+1]/(k+1)-X[2k+1]*X[N+1-k]}
     ; N=4 k=1,2,3
 
     printLineMacro inputHelper
@@ -96,7 +96,7 @@ result:
     mov k,cx
     inc k
     mov ax,k
-    push ax; ax = k + 1
+    push ax ; ax = k + 1
     dec k
 
     mov ax,k
@@ -107,13 +107,13 @@ result:
     lea si,X
     add si,ax
     mov ax,[si]
-    push ax; ax = X[2k + 1]
+    push ax ; ax = X[2k + 1]
 
     mov ax,N
     inc ax
     sub ax,k
     mov bl,2
-    imul bl; ax = offset X[N + 1 - k]
+    imul bl ; ax = offset X[N + 1 - k]
     lea si,X
     add si,ax
     mov ax,[si]
@@ -125,6 +125,7 @@ result:
     push ax ; ax = X[2k + 1] * X[N + 1 - k]
     pop bx ; k + 1
     pop ax ; k * X[k + 1]
+    cwd
     idiv bx ; k * X[k + 1] / k + 1
     pop bx
     sub ax,bx
