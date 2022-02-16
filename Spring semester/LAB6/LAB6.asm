@@ -22,18 +22,8 @@ printSymbolMacro macro symbol
     pop ax
 endm
 
-printLineMacro macro line
-    push ax
-    push dx
-    mov ah, 09H
-    lea dx, line
-    int 21H
-    pop dx
-    pop ax
-endm
-
-LAB5 segment 'code'
-assume cs:LAB5, ds:LAB5, ss:LAB5, es:LAB5
+LAB6 segment 'code'
+assume cs:LAB6, ds:LAB6, ss:LAB6, es:LAB6
 org 100H
 begin: jmp main
 
@@ -88,5 +78,5 @@ ob3:
     ret
 printRealNumber endp
 
-LAB5 ends
+LAB6 ends
 end begin
