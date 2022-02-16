@@ -35,10 +35,10 @@ begin: jmp main
 
     newLine db 0AH, 0DH, '$'
     resultHelper db 'Z = S{k * X[k + 1]/(k + 1) - X[2k + 1] * X[N + 1 - k]} = $'
-    inputHelper db 'Enter an array of 8 elements:$'
+    inputHelper db 'Enter an array of 10 elements:$'
     outputHelper db 'Your array: $'
 
-    X dw 8 dup(?)
+    X dw 10 dup(?)
     num dw ?
     sum dw 0
     k dw ?
@@ -52,7 +52,7 @@ main proc near
 
     printLineMacro inputHelper
     printLineMacro newLine
-    mov cx,8
+    mov cx,10
     lea si,X
 inpt:
     push cx
@@ -79,7 +79,7 @@ output:
     
     printLineMacro newLine
     printLineMacro resultHelper
-    mov cx,3
+    mov cx,4
 result:
     lea si,X
     mov k,cx
