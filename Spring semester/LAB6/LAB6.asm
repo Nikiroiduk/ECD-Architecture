@@ -37,59 +37,56 @@ assume cs:LAB5, ds:LAB5, ss:LAB5, es:LAB5
 org 100H
 begin: jmp main
 
-    X dd -1.3
+    X dd 3.14
     Y dd ?
-    DWA dd 2.0
-    CHETIRE dd 4.0
-    TIME dd ?
+    FOUR dd 4.0
 
 main proc near
     ; Variant №5
     ; Y = arctg((1+x)/(1-x))/4
 
-    ; FINIT ; инициализация математического сопроцессора
-    ; FLD X ; ST(0) = x = –1.3
-    ; FLD CHETIRE ; ST(0) = 4; ST(1) = x = –1.3
-    ; FDIV ; ST(0) = x / 4 = –0.325
-    ; FLD X ; ST(0) = –1.3 ST(1) = –0.325
-    ; FMUL ; ST(0) = x*x / 4 = 0.4225
-    ; FSTP TIME ; TIME = x*x / 4 = 0.4225
-    ; FLD X ; ST(0) = x = –1.3
-    ; FLD DWA ; ST(0) =2 ST(1) = x = –1.3
-    ; FDIV ; ST(0) = x / 2 = –0.65
-    ; FADD TIME ; ST(0) = x*x / 4 + x / 2 = –0.65 + 0.4225 = –0.2275
-    ; FLD1 ; ST(0) = 1; ST(1) = x*x / 4 + x / 2 = –0.2275
-    ; FADD ; ST(0) = x*x / 4 + x / 2+1 = 0.7725
-    ; FPTAN ; ST(0) = 1; ST(1) = 0.9745
-    ; FSTP X ; X = 1
-    ; FSTP Y ; Y = 0.9745
-
     FINIT
-    FLD X
+    FLD1            ; st(0) = 1
+    FLD X           ; st(0) = x     st(1) = 1
+    FADDP st(1), st ; st(0) = x + 1           
+    FLD1            ; st(0) = 1     st(1) = x + 1
+    FLD X           ; st(0) = x     st(1) = 1     st(2) = x + 1
+    FSUBP st(1), st ; st(0) = 1 - x st(1) = x + 1
+    FDIVP st(1), st ; st(0) = (1 + x)/(1 - x)
+    FLD1            ; st(0) = 1     st(1) = (1 + x)/(1 - x)
+    FPATAN          ; st(0) = arctan(((1 + x)/(1 - x))/1)
+    FLD FOUR        ; st(0) = 4     st(1) = arctan(((1 + x)/(1 - x))/1)
+    FDIVP st(1), st ; st(0) = arctan(((1 + x)/(1 - x))/1)/4
     FSTP Y
 
-
-    mov ax, word ptr Y
- 
- 
-    mov bx,ax
-    shl bx,1
-        mov cx,32
-ob1:
-        shl bx,1
-        jc ob2
-        
-        printSymbolMacro 30H
-        jmp ob3
-        
-ob2:
-        printSymbolMacro 31H
-ob3:
-        loop ob1  
-
+    call printRealNumber
 
     ret
 main endp
+
+printRealNumber proc
+    mov cx, 4
+print:
+    mov bp, cx
+    dec bp
+    push cx
+    mov al, byte ptr Y + bp
+    mov bl,al
+    mov cx,8
+ob1:
+    shl bl,1
+    jc ob2
+    printSymbolMacro 30H
+    jmp ob3
+ob2:
+    printSymbolMacro 31H
+ob3:
+    loop ob1
+    spaceMacro
+    pop cx
+    loop print
+    ret
+printRealNumber endp
 
 LAB5 ends
 end begin
