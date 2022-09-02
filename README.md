@@ -13,16 +13,16 @@
 
 <details><summary>Spring semester 2022</summary>
 
- * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2021/LAB1) - Row and table processing commands
- * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2021/LAB2) - Macros
- * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2021/LAB3) - 1D arrays
- * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2021/LAB4) - Arithmetic operations on matrices
- * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2021/LAB5) - Programming the mouse
- * [Lab 6](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2021/LAB6) - Coprocessor programming
+ * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2022/LAB1) - Row and table processing commands
+ * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2022/LAB2) - Macros
+ * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2022/LAB3) - 1D arrays
+ * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2022/LAB4) - Arithmetic operations on matrices
+ * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2022/LAB5) - Programming the mouse
+ * [Lab 6](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2022/LAB6) - Coprocessor programming
  
 </details>
 
-<details><summary>Spring semester 2022</summary>
+<details><summary>Fall semester 2022</summary>
 
  * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB1) - Creating a mini-environment and executable program on Masm under Windows
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB2) - Dialogue structure of the program. Formatted output
