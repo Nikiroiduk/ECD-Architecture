@@ -1,6 +1,6 @@
 # ECD-Architecture
  
-<details><summary>Fall semester 2021</summary>
+<details><summary>Fall semester 2021 <strong>Computers and peripherals</strong></summary>
 
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2021/LAB2) - Data definition. Assembler program structure
  * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2021/LAB3) - General purpose commands. Arithmetic commands
@@ -11,7 +11,7 @@
 
 </details>
 
-<details><summary>Spring semester 2022</summary>
+<details><summary>Spring semester 2022 <strong>Architecture of computers and microcontrollers</strong></summary>
 
  * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2022/LAB1) - Row and table processing commands
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Spring_semester_2022/LAB2) - Macros
@@ -22,7 +22,7 @@
  
 </details>
 
-<details><summary>Fall semester 2022 Programming in low level languages</summary>
+<details><summary>Fall semester 2022 <strong>Programming in low level languages</strong></summary>
 
  * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB1) - Creating a mini-environment and executable program on Masm under Windows
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB2) - Dialogue structure of the program. Formatted output
@@ -35,7 +35,7 @@
  
 </details>
 
-<details><summary>Fall & Spring semester 2022 Operating Systems</summary>
+<details><summary>Fall & Spring semester 2022 <strong>Operating Systems</strong></summary>
 
  * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB1) - Intel assembly programming elements
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB2) - Programming TSR - programs
