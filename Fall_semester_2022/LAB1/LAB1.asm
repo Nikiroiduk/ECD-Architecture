@@ -11,7 +11,7 @@ TitleMsg db 'Asm language Masm32!',0
 MB_OK equ 0
 
 .code
-start:
+lab1:
 push MB_OK
 push offset TitleMsg
 push offset TextMsg
@@ -19,4 +19,4 @@ push 0
 call MessageBoxA
 push 0
 call ExitProcess
-end start
+end lab1
