@@ -1,4 +1,4 @@
-#ignore .extension
+# ignore .extension
 *.exe
 *.obj
 *.map
@@ -6,4 +6,5 @@
 *.td
 *.com
 *.lst
+# ignore folder/
 MASM_SDK/
