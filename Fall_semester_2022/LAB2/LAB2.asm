@@ -10,8 +10,6 @@ ExitProcess proto stdcall :dword
 MessageBoxA proto stdcall :dword, :dword, :dword, :dword
 wsprintfA proto c :vararg
 
-
-
 .data
     TitleMsg db 'Result', 0
     buffer db 128 dup(0)
