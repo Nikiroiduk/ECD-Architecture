@@ -22,15 +22,28 @@
  
 </details>
 
-<details><summary>Fall semester 2022</summary>
+<details><summary>Fall semester 2022 Programming in low level languages</summary>
 
- * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB1) - Creating a mini-environment and executable program on Masm under Windows
- * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB2) - Dialogue structure of the program. Formatted output
- * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB3) - Procedures
- * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB4) - Console applications
- * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB5) - Window applications
- * [Lab 6](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB6) - Window controls
- * [Lab 7](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB7) - Application resources
- * [Lab 8](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022/LAB8) - Working with files in Windows
+ * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB1) - Creating a mini-environment and executable program on Masm under Windows
+ * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB2) - Dialogue structure of the program. Formatted output
+ * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB3) - Procedures
+ * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB4) - Console applications
+ * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB5) - Window applications
+ * [Lab 6](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB6) - Window controls
+ * [Lab 7](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB7) - Application resources
+ * [Lab 8](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_semester_2022_LLP/LAB8) - Working with files in Windows
+ 
+</details>
+
+<details><summary>Fall & Spring semester 2022 Operating Systems</summary>
+
+ * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB1) - Intel assembly programming elements
+ * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB2) - Programming TSR - programs
+ * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB3) - Timer and sound
+ * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB4) - Keyboard reprogramming
+ * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB5) - Video adapter programming
+ * [Lab 6](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB6) - File system organization
+ * [Lab 7](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB7) - Compiler development
+ * [Lab 8](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB8) - Object code generation
  
 </details>
