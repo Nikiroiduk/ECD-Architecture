@@ -96,7 +96,6 @@ task1 endp
 
 task2 proc
     printLineMacro newLineHelper
-    printLineMacro newLineHelper
     printLineMacro diskInfoHelper
     printLineMacro newLineHelper
     mov ah, 36H
@@ -190,7 +189,7 @@ nonZero:
     or ax, ax
     jnz nonZero
 
-    mov ah,02H
+    mov ah, 02H
 
 writeDigitLoop:
     pop dx
