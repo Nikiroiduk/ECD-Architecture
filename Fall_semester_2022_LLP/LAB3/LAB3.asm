@@ -22,9 +22,9 @@
 .model flat, stdcall
 option casemap : none
 
-MessageBoxA proto stdcall :dword, :dword, :dword, :dword
+MessageBoxA proto :dword, :dword, :dword, :dword
 wsprintfA proto c :vararg
-ExitProcess proto stdcall :dword
+ExitProcess proto :dword
 
 .data
     TitleMsg db 'Result', 0
@@ -34,7 +34,7 @@ ExitProcess proto stdcall :dword
 
     A dd 5
     B dd 0
-    X dd 1
+    X dd -1
 
     A1 dd 10
     A2 dd 200
