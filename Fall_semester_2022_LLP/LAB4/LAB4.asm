@@ -8,7 +8,6 @@ option casemap : none
 
 GetStdHandle proto :dword 
 WriteConsoleA proto :dword, :dword, :dword, :dword, :dword
-lpBuffer proto :dword, :dword, :dword, :dword
 ExitProcess proto :dword 
 
 .data
@@ -19,6 +18,7 @@ ExitProcess proto :dword
     bytesWritten dd ? 
 .const
     STD_OUTPUT_HANDLE equ -11 
+    STD_INPUT_HANDLE equ -10
 
 .code
 lab4:
