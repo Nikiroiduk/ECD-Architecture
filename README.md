@@ -35,7 +35,7 @@
  
 </details>
 
-<details><summary>Fall & Spring semester 2022 <strong>Operating Systems</strong></summary>
+<details><summary>Fall & Spring semester 2022 - '23 <strong>Operating Systems</strong></summary>
 
  * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB1) - Intel assembly programming elements
  * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB2) - Programming TSR - programs
