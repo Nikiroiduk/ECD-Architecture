@@ -37,13 +37,13 @@
 
 <details><summary>Fall & Spring semester 2022 - '23 <strong>Operating Systems</strong></summary>
 
- * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB1) - Intel assembly programming elements
- * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB2) - Programming TSR - programs
- * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB3) - Timer and sound
- * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB4) - Keyboard reprogramming
- * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB5) - Video adapter programming
- * [Lab 6](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB6) - File system organization
- * [Lab 7](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB7) - Compiler development
- * [Lab 8](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022_OS/LAB8) - Object code generation
+ * [Lab 1](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022-'23_OS/LAB1) - Intel assembly programming elements
+ * [Lab 2](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022-'23_OS/LAB2) - Programming TSR - programs
+ * [Lab 3](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022-'23_OS/LAB3) - Timer and sound
+ * [Lab 4](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022-'23_OS/LAB4) - Keyboard reprogramming
+ * [Lab 5](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022-'23_OS/LAB5) - Video adapter programming
+ * [Lab 6](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022-'23_OS/LAB6) - File system organization
+ * [Lab 7](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022-'23_OS/LAB7) - Compiler development
+ * [Lab 8](https://github.com/Nikiroiduk/ECD-Architecture/tree/main/Fall_Spring_semester_2022-'23_OS/LAB8) - Object code generation
  
 </details>
