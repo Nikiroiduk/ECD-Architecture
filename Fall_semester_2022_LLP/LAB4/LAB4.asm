@@ -6,10 +6,10 @@
 .model flat, stdcall
 option casemap : none
 
-GetStdHandle proto :dword 
+GetStdHandle  proto :dword
 WriteConsoleA proto :dword, :dword, :dword, :dword, :dword
-ReadConsoleA proto :dword, :dword, :dword, :dword, :dword
-ExitProcess proto :dword 
+ReadConsoleA  proto :dword, :dword, :dword, :dword, :dword
+ExitProcess   proto :dword
 
 .data
     message db "Hello World!", 0DH, 0AH
@@ -17,12 +17,12 @@ ExitProcess proto :dword
     lmessage equ 100
 .data?
     consoleOutHandle dd ?
-    consoleInHandle dd ?
-    bytesWritten dd ?
-    byteArray db ?
+    consoleInHandle  dd ?
+    bytesWritten     dd ?
+    byteArray        db ?
 .const
     STD_OUTPUT_HANDLE equ -11
-    STD_INPUT_HANDLE equ -10
+    STD_INPUT_HANDLE  equ -10
 
 .code
 lab4:
