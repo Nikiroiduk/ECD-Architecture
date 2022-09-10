@@ -29,7 +29,7 @@ lab4:
 
     call readFromConsole
     
-    ; TODO: should found third word in bytesWritten
+    ; TODO: should found third word in byteArray
     ; TODO: print first symbol of this word
     ; TODO: print length of this word
 
@@ -58,11 +58,11 @@ lab4:
         mov consoleOutHandle, eax
 
         invoke WriteConsoleA, \
-            consoleOutHandle, \
-            offset byteArray, \
-            lmessage, \
-            offset bytesWritten, \
-            0
+               consoleOutHandle, \
+               offset byteArray, \
+               lmessage, \
+               offset bytesWritten, \
+               0
         popad
         ret
     writeOnConsole endp
