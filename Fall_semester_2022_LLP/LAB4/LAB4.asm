@@ -19,7 +19,9 @@ ExitProcess   proto :dword
     consoleOutHandle dd ?
     consoleInHandle  dd ?
     bytesWritten     dd ?
-    byteArray        db ?
+    byteArray        db lmessage dup(?)
+
+    testArray db 'Text to check work of movsb'
 .const
     STD_OUTPUT_HANDLE equ -11
     STD_INPUT_HANDLE  equ -10
@@ -29,7 +31,7 @@ lab4:
 
     call readFromConsole
     
-    ; TODO: should found third word in byteArray
+    ; TODO: should find third word in byteArray
     ; TODO: print first symbol of this word
     ; TODO: print length of this word
 

@@ -71,6 +71,7 @@ begin: jmp main
     hundreds db ?
     tens db ?
     ones db ?
+    
 main proc near
     call task1
     call task2
