@@ -153,7 +153,6 @@ task2 endp
 calcDriveSize proc
     pop si
     pop data
-    FINIT
     FILD data
     mov data, ax
     FILD data

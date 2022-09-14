@@ -1,6 +1,6 @@
-; Variant #5
-; Ввести строку. Найти слово, стоящее в тексте под третьим номером,
-; вывести его первую букву и количество букв в нем.
+; Variant #2
+; Ввести строку, состоящую из слов, разделенных одним пробелом.
+; Определить количество слов и количество буквы «а» в строке.
 
 .686p
 .model flat, stdcall
@@ -10,18 +10,21 @@ GetStdHandle  proto :dword
 WriteConsoleA proto :dword, :dword, :dword, :dword, :dword
 ReadConsoleA  proto :dword, :dword, :dword, :dword, :dword
 ExitProcess   proto :dword
+wsprintfA proto c :vararg
 
 .data
-    message db "Hello World!", 0DH, 0AH
-    ;lmessage equ $ - message
-    lmessage equ 100
+    lmessage     equ 100
+    resultString db  'Number of words: %d', 0AH, 0DH,
+                     'Quantity "a" (ascii - 196): %d', 0
+    buffer       db  lmessage dup(?)
 .data?
     consoleOutHandle dd ?
     consoleInHandle  dd ?
     bytesWritten     dd ?
-    byteArray        db lmessage dup(?)
+    inputData        db lmessage dup(?)
+    spaces           db ?
+    as               db ?
 
-    testArray db 'Text to check work of movsb'
 .const
     STD_OUTPUT_HANDLE equ -11
     STD_INPUT_HANDLE  equ -10
@@ -30,14 +33,43 @@ ExitProcess   proto :dword
 lab4:
 
     call readFromConsole
-    
-    ; TODO: should find third word in byteArray
-    ; TODO: print first symbol of this word
-    ; TODO: print length of this word
+
+    xor eax, eax
+    mov al, ' '
+    push eax
+    call countMatches
+    mov spaces, al
+    inc spaces
+
+    xor eax, eax
+    mov al, 'a'
+    push eax
+    call countMatches
+    mov as,     al
+
+    invoke wsprintfA, addr buffer, addr resultString, spaces, as
 
     call writeOnConsole
 
     invoke ExitProcess, 0 
+
+    countMatches proc
+        mov eax, [esp + 4]
+
+        xor edx, edx
+        dec bytesWritten
+        mov ecx, bytesWritten
+    meh:
+        cmp [inputData + ecx], al
+        jz match
+        jnz continue
+    match:
+        inc dl
+    continue:
+        loop meh
+        mov al, dl
+        ret
+    countMatches endp
 
     readFromConsole proc
         pushad
@@ -45,11 +77,11 @@ lab4:
         mov consoleInHandle, eax
 
         invoke ReadConsoleA, \
-               consoleInHandle, \
-               offset byteArray, \
-               lmessage, \
-               offset bytesWritten, \
-               0
+            consoleInHandle, \
+            addr inputData, \
+            lmessage, \
+            addr bytesWritten, \
+            0
         popad
         ret
     readFromConsole endp
@@ -60,11 +92,11 @@ lab4:
         mov consoleOutHandle, eax
 
         invoke WriteConsoleA, \
-               consoleOutHandle, \
-               offset byteArray, \
-               lmessage, \
-               offset bytesWritten, \
-               0
+            consoleOutHandle, \
+            addr buffer, \
+            lmessage, \
+            addr bytesWritten, \
+            0
         popad
         ret
     writeOnConsole endp
