@@ -15,7 +15,7 @@ wsprintfA     proto c :vararg
 .data
     lmessage     equ 100
     resultString db  'Number of words: %d', 0AH, 0DH,
-                     'Quantity "a" (ascii - 196): %d', 0
+                     'Quantity "a" (ascii - 61H): %d', 0
     buffer       db  lmessage dup(?)
 .data?
     consoleOutHandle dd ?
