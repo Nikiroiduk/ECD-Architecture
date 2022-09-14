@@ -6,11 +6,11 @@
 .model flat, stdcall
 option casemap : none
 
-GetStdHandle  proto :dword
-WriteConsoleA proto :dword, :dword, :dword, :dword, :dword
-ReadConsoleA  proto :dword, :dword, :dword, :dword, :dword
-ExitProcess   proto :dword
-wsprintfA proto c :vararg
+GetStdHandle  proto   :dword
+WriteConsoleA proto   :dword, :dword, :dword, :dword, :dword
+ReadConsoleA  proto   :dword, :dword, :dword, :dword, :dword
+ExitProcess   proto   :dword
+wsprintfA     proto c :vararg
 
 .data
     lmessage     equ 100
