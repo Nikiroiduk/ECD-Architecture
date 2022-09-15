@@ -15,13 +15,13 @@ wsprintfA     proto c :vararg
 .data
     lmessage     equ 100
     resultString db  'Number of words: %d', 0AH, 0DH,
-                     'Quantity "a" (ascii - 61H): %d', 0
-    buffer       db  lmessage dup(?)
+                     'Quantity "a-A": %d', 0
 .data?
     consoleOutHandle dd ?
     consoleInHandle  dd ?
     bytesWritten     dd ?
     inputData        db lmessage dup(?)
+    buffer           db lmessage dup(?)
     spaces           db ?
     as               db ?
 
@@ -38,14 +38,22 @@ lab4:
     mov al, ' '
     push eax
     call countMatches
-    mov spaces, al
-    inc spaces
+    mov spaces, dl
+    .if bytesWritten > 2
+        inc spaces
+    .endif
 
     xor eax, eax
     mov al, 'a'
     push eax
     call countMatches
-    mov as,     al
+    mov as, dl
+
+    xor eax, eax
+    mov al, 'A'
+    push eax
+    call countMatches
+    add as, dl
 
     invoke wsprintfA, addr buffer, addr resultString, spaces, as
 
@@ -54,20 +62,23 @@ lab4:
     invoke ExitProcess, 0 
 
     countMatches proc
-        mov eax, [esp + 4]
+        .if bytesWritten <= 2
+            mov dsl, 0
+            ret
+        .endif
 
+        mov eax, [esp + 4]
         xor edx, edx
-        dec bytesWritten
         mov ecx, bytesWritten
-    meh:
-        cmp [inputData + ecx], al
-        jz match
-        jnz continue
-    match:
-        inc dl
-    continue:
+        mov ebx, 0
+
+        meh:
+            .if [inputData + ebx] == al
+                inc dl
+            .endif
+        inc ebx
         loop meh
-        mov al, dl
+
         ret
     countMatches endp
 
