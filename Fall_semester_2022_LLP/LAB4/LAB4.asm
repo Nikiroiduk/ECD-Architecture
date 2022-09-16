@@ -63,7 +63,7 @@ lab4:
 
     countMatches proc
         .if bytesWritten <= 2
-            mov dsl, 0
+            mov dl, 0
             ret
         .endif
 
@@ -88,11 +88,11 @@ lab4:
         mov consoleInHandle, eax
 
         invoke ReadConsoleA, \
-            consoleInHandle, \
-            addr inputData, \
-            lmessage, \
-            addr bytesWritten, \
-            0
+               consoleInHandle, \
+               addr inputData, \
+               lmessage, \
+               addr bytesWritten, \
+               0
         popad
         ret
     readFromConsole endp
@@ -103,11 +103,11 @@ lab4:
         mov consoleOutHandle, eax
 
         invoke WriteConsoleA, \
-            consoleOutHandle, \
-            addr buffer, \
-            lmessage, \
-            addr bytesWritten, \
-            0
+               consoleOutHandle, \
+               addr buffer, \
+               lmessage, \
+               addr bytesWritten, \
+               0
         popad
         ret
     writeOnConsole endp
