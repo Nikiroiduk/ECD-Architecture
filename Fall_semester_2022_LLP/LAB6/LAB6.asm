@@ -1,13 +1,8 @@
 ; Variant #2
-; Используя обработку сообщений WM_KEYDOWN,
-; WM_RBUTTONDBLCLK, WM_LBUTTONDOWN, WM_TIMER и т.д. и
-; API-функции ShowWindow, CloseWindow, MoveWindow, SetWindowText,
-; GetWindowTextLength, GetClientRect, GetTitleBarInfo, GetWindowPlacement,
-; SetWindowPlacement, WindowFromPoint, AnimateWindow, SetTimer, KillTimer
-; и т.д. создать оконное приложение, осуществляющее действия:
-;   Двойной щелчок левой кнопки в клиентской области окна приводит
-; к горизонтальному перемещению окна по экрану. Отменить перемещение
-; можно нажатием клавиши F5.
+; Создать оконное приложение с элементами управления «Кнопки»,
+; «Поля редактирования», «Статический текст»
+;   Калькулятор, выполняющий операции сложения, вычитания и
+; умножения.
 
 .686p
 .model flat, stdcall
@@ -32,32 +27,11 @@ RegisterClassExA   proto :dword
 GetModuleHandleA   proto :dword
 ExitProcess        proto :dword
 
-GetWindowPlacement proto :dword, :dword
-SetWindowPlacement proto :dword, :dword
-SetTimer           proto :dword, :dword, :dword, :dword
-KillTimer          proto :dword, :dword
-
 
 POINT struct
     x dd ?
     y dd ?
 POINT ends
-
-RECT struct
-    left   dd ?
-    top    dd ?
-    right  dd ?
-    bottom dd ?
-RECT ends
-
-WINDOWPLACEMENT struct
-    iLength          dd sizeof WINDOWPLACEMENT
-    flags            dd ?
-    showCmd          dd ?
-    ptMinPosition    POINT<>
-    ptMaxPosition    POINT<>
-    rcNormalPosition RECT<>
-WINDOWPLACEMENT ends
 
 MSG struct
     hwnd    dd ?
@@ -85,18 +59,15 @@ WNDCLASSEXA ends
 
 .data
     ClassName   db 'WinClass', 0
-    AppName     db 'LAB5', 0
+    AppName     db 'LAB6', 0
     hInstance   dd 0H
     CommandLine dd 0H
 .data?
-    timer dd ?
 .const
-    delay               equ 10
     WM_DESTROY          equ 2H
     WM_KEYDOWN          equ 100H
     WM_LBUTTONDBCLK     equ 203H
     VK_ESCAPE           equ 1BH
-    VK_F5               equ 74H
     IDI_APPLICATION     equ 7F00H
     IDC_ARROW           equ 7F00H
     SW_SHOWNORMAL       equ 1H
@@ -120,6 +91,7 @@ WNDCLASSEXA ends
 
 .code
 lab5:
+
     invoke GetModuleHandleA, 0
     mov hInstance, eax
     invoke GetCommandLineA
@@ -134,8 +106,7 @@ lab5:
 
         mov wc.cbSize, sizeof WNDCLASSEXA
         mov wc.style, CS_HREDRAW or \
-                      CS_VREDRAW or \
-                      CS_DBLCLKS
+                      CS_VREDRAW
         mov wc.lpfnWndProc, offset WndProc
         mov wc.cbClsExtra, 0
         mov wc.cbWndExtra, 0
@@ -171,27 +142,13 @@ lab5:
         ret
     WinMain endp
 
-    timerProc proc hWnd:dword
-        local placement:WINDOWPLACEMENT
-        invoke GetWindowPlacement, hWnd, addr placement
-        inc placement.rcNormalPosition.left
-        inc placement.rcNormalPosition.right
-        invoke SetWindowPlacement, hWnd, addr placement
-    timerProc endp
-
     WndProc proc hWnd:dword, wMsg:dword, wParam:dword, lParam:dword
-        .if wMsg == WM_DESTROY
+        .if wMsg==WM_DESTROY
             invoke PostQuitMessage, 0
-        .elseif wMsg == WM_KEYDOWN
-            .if wParam == VK_ESCAPE
+        .elseif wMsg==WM_KEYDOWN
+            .if wParam==VK_ESCAPE
                 invoke PostQuitMessage, 0
             .endif
-            .if wParam == VK_F5
-                invoke KillTimer, hWnd, addr timer
-            .endif
-        .elseif wMsg == WM_LBUTTONDBCLK
-            invoke SetTimer, hWnd, addr timer, delay, addr timerProc
-            mov timer, eax
         .else
             invoke DefWindowProcA, hWnd, wMsg, wParam, lParam
             ret
