@@ -13,10 +13,12 @@ MessageBoxA PROTO STDCALL :DWORD,:DWORD,:DWORD,:DWORD
 .code
 lab1:
     push MB_OK
-    push offset TitleMsg
+    push offset TitleMsg 
     push offset TextMsg
     push 0
     call MessageBoxA
     push 0
     call ExitProcess
+    ; invoke MessageBoxA, 0, offset TextMsg, offset TitleMsg, MB_OK
+    ; invoke ExitProcess, 0
 end lab1

@@ -153,8 +153,8 @@ lab5:
         invoke RegisterClassExA, addr wc
 
         invoke CreateWindowExA, 0, addr ClassName, addr AppName, \
-               WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, \
-               CW_USEDEFAULT, CW_USEDEFAULT, 0, 0, hInst, 0
+               WS_OVERLAPPEDWINDOW, 200, 200, \
+               600, 300, 0, 0, hInst, 0
         mov hwnd, eax
 
         invoke ShowWindow, hwnd, SW_SHOWNORMAL
