@@ -19,58 +19,58 @@ endm
 printSymbolMacro macro symbol
     push ax
     push dx
-    mov ah, 02H
-    mov dx, symbol
-    int 21H
-    pop dx
-    pop ax
+    mov  ah, 02H
+    mov  dx, symbol
+    int  21H
+    pop  dx
+    pop  ax
 endm
 
 printSymbolMacro macro symbol
     push ax
     push dx
-    mov ah, 02H
-    mov dl, symbol
-    int 21H
-    pop dx
-    pop ax
+    mov  ah, 02H
+    mov  dl, symbol
+    int  21H
+    pop  dx
+    pop  ax
 endm
 
 printLineMacro macro line
     push ax
     push dx
-    mov ah, 09H
-    lea dx, line
-    int 21H
-    pop dx
-    pop ax
+    mov  ah, 09H
+    lea  dx, line
+    int  21H
+    pop  dx
+    pop  ax
 endm
 
 LAB1 segment 'code'
 assume cs:LAB1, ds:LAB1, ss:LAB1, es:LAB1
 org 100h
 begin: jmp main
-    newLineHelper db 0AH, 0DH, '$'
-    osVersionHelper db 'OS version: $'
-    diskInfoHelper db 'Disk info$'
-    sectorsPerClusterHelper db 'Sectors per cluster: $'
+    newLineHelper              db 0AH, 0DH, '$'
+    osVersionHelper            db 'OS version: $'
+    diskInfoHelper             db 'Disk info$'
+    sectorsPerClusterHelper    db 'Sectors per cluster: $'
     numberOfFreeClustersHelper db 'Number of free clusters: $'
-    bytesPerSectorHelper db 'Bytes per sector: $'
+    bytesPerSectorHelper       db 'Bytes per sector: $'
     totalClustersOnDriveHelper db 'Total clusters on drive: $'
-    totalDriveSpaceHelper db 'Total space on drive: $'
-    freeDriveSpaceHelper db 'Free space on drive: $'
-    diskErrorHelper db 'Something went wrong :($'
-    megaBytesHelper db ' megabytes$'
+    totalDriveSpaceHelper      db 'Total space on drive: $'
+    freeDriveSpaceHelper       db 'Free space on drive: $'
+    diskErrorHelper            db 'Something went wrong :($'
+    megaBytesHelper            db ' megabytes$'
 
-    diskSize dd ?
+    diskSize                   dd ?
 
-    data dw ?
-    sign db '+'
-    tensThousands db ?
-    thousands db ?
-    hundreds db ?
-    tens db ?
-    ones db ?
+    data                       dw ?
+    sign                       db '+'
+    tensThousands              db ?
+    thousands                  db ?
+    hundreds                   db ?
+    tens                       db ?
+    ones                       db ?
     
 main proc near
     call task1
