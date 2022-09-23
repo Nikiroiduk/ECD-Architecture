@@ -39,167 +39,167 @@ begin: jmp main
 
     timer proc far
         push ds ax bx cx dx si di bp
-        cmp timerStarted, 0
-        jz fin
-        mov ax, word ptr cs:t
-        mov bl, 18
+        cmp  timerStarted, 0
+        jz   fin
+        mov  ax, word ptr cs:t
+        mov  bl, 18
         idiv bl
 
-        cmp al, 0
-        jz timesUp
-        dec word ptr cs:t
+        cmp  al, 0
+        jz   timesUp
+        dec  word ptr cs:t
 
-        mov ah,02h
-        mov bh,0
-        mov dh,24
-        mov dl,79
-        int 10H
-        mov ah,09
-        mov bh,0
-        add al,30h
-        mov cx,1
-        mov bl,1Eh
-        int 10h
-        jmp fin
+        mov  ah,02h
+        mov  bh,0
+        mov  dh,24
+        mov  dl,79
+        int  10H
+        mov  ah,09
+        mov  bh,0
+        add  al,30h
+        mov  cx,1
+        mov  bl,1Eh
+        int  10h
+        jmp  fin
 
     timesUp:
-        mov ah,02h
-        mov bh,0
-        mov dh,24
-        mov dl,79
-        int 10H
-        mov ah,09
-        mov bh,0
-        add al,''
-        mov cx,1
-        mov bl,1Eh
-        int 10h
+        mov  ah,02h
+        mov  bh,0
+        mov  dh,24
+        mov  dl,79
+        int  10H
+        mov  ah,09
+        mov  bh,0
+        add  al,''
+        mov  cx,1
+        mov  bl,1Eh
+        int  10h
 
-        mov bh, 0H
-        mov cx, lmessage
-        mov dh, 24
-        mov dl, 79
-        sub dl, lMessage
+        mov  bh, 0H
+        mov  cx, lmessage
+        mov  dh, 24
+        mov  dl, 79
+        sub  dl, lMessage
         push cs
-        pop es
-        mov bp, offset timeIsUp
-        mov ah, 13H
-        int 10h
+        pop  es
+        mov  bp, offset timeIsUp
+        mov  ah, 13H
+        int  10h
 
-        mov ah, 2H
-        mov bh, 0
-        mov dl, cursorX
-        mov dh, cursorY
-        int 10H
+        mov  ah, 2H
+        mov  bh, 0
+        mov  dl, cursorX
+        mov  dh, cursorY
+        int  10H
 
-        dec timerStarted
+        dec  timerStarted
 
     fin:
-        int 61h
-        pop bp di si dx cx bx ax ds
+        int  61h
+        pop  bp di si dx cx bx ax ds
         iret
     timer endp
 
     keyboard proc
         push ds ax bx cx dx si di bp
 
-        in al, 60H
-        cmp al, 3BH
-        je meh
-        pop bp di si dx cx bx ax ds
-        int 60H
+        in   al, 60H
+        cmp  al, 3BH
+        je   meh
+        pop  bp di si dx cx bx ax ds
+        int  60H
         iret
         
     meh:
-        mov ah, 3H
-        mov bh, 0H
-        int 10H
+        mov  ah, 3H
+        mov  bh, 0H
+        int  10H
 
-        mov cursorX, dl
-        mov cursorY, dh
+        mov  cursorX, dl
+        mov  cursorY, dh
         
-        mov ah, 2H
-        mov bh, 0H
-        dec dl
-        int 10H
+        mov  ah, 2H
+        mov  bh, 0H
+        dec  dl
+        int  10H
 
-        mov ah, 8H
-        mov bh, 0H
-        int 10H
+        mov  ah, 8H
+        mov  bh, 0H
+        int  10H
 
-        sub al, 30H
+        sub  al, 30H
         cbw
-        mov bl, 18
+        mov  bl, 18
         imul bl
 
-        add ax, 18
-        mov word ptr cs:t, ax
+        add  ax, 18
+        mov  word ptr cs:t, ax
 
-        inc timerStarted
+        inc  timerStarted
 
-        pop bp di si dx cx bx ax ds
-        mov al, 20H
-        out 20H, al
+        pop  bp di si dx cx bx ax ds
+        mov  al, 20H
+        out  20H, al
         iret
         finish equ $
     keyboard endp
 
     main proc near     
 
-        mov ah, 35H
-        mov al, 60H
-        int 21H
-        cmp bx, 0H
-        je fine
+        mov  ah, 35H
+        mov  al, 60H
+        int  21H
+        cmp  bx, 0H
+        je   fine
 
         printLineMacro programmAlreadyUpHelper
         ret
 
     fine:
         printLineMacro helpTextHelper
-        mov ah, 35H
-        mov al, 8H
-        int 21H
+        mov  ah, 35H
+        mov  al, 8H
+        int  21H
 
         cli
         push ds
-        mov dx, bx
+        mov  dx, bx
         push es
-        pop ds
-        mov ah, 25H
-        mov al, 61H
-        int 21H
-        pop ds
+        pop  ds
+        mov  ah, 25H
+        mov  al, 61H
+        int  21H
+        pop  ds
         sti
 
-        lea dx, timer
-        mov ah, 25H
-        mov al, 8H
-        int 21H
+        lea  dx, timer
+        mov  ah, 25H
+        mov  al, 8H
+        int  21H
 
 
-        mov ah, 35H
-        mov al, 9H
-        int 21H
+        mov  ah, 35H
+        mov  al, 9H
+        int  21H
 
         cli
         push ds
-        mov dx, bx
+        mov  dx, bx
         push es
-        pop ds
-        mov ah, 25H
-        mov al, 60H
-        int 21H
-        pop ds
+        pop  ds
+        mov  ah, 25H
+        mov  al, 60H
+        int  21H
+        pop  ds
         sti
 
-        mov ah, 25H
-        mov al, 9H
-        lea dx, keyboard
-        int 21H
+        mov  ah, 25H
+        mov  al, 9H
+        lea  dx, keyboard
+        int  21H
 
-        lea dx, finish
-        int 27H
+        lea  dx, finish
+        int  27H
         ret
     main endp
     LAB2 ends
