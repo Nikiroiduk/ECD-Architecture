@@ -112,19 +112,19 @@ begin: jmp main
         
     meh:
         mov ah, 3H
-        mov bh, 0
+        mov bh, 0H
         int 10H
 
         mov cursorX, dl
         mov cursorY, dh
         
         mov ah, 2H
-        mov bh, 0
+        mov bh, 0H
         dec dl
         int 10H
 
         mov ah, 8H
-        mov bh, 0
+        mov bh, 0H
         int 10H
 
         sub al, 30H
@@ -149,7 +149,7 @@ begin: jmp main
         mov ah, 35H
         mov al, 60H
         int 21H
-        cmp bx, 0
+        cmp bx, 0H
         je fine
 
         printLineMacro programmAlreadyUpHelper
@@ -166,9 +166,9 @@ begin: jmp main
         mov dx, bx
         push es
         pop ds
-        mov ah, 25h
-        mov al, 61h
-        int 21h
+        mov ah, 25H
+        mov al, 61H
+        int 21H
         pop ds
         sti
 
@@ -187,9 +187,9 @@ begin: jmp main
         mov dx, bx
         push es
         pop ds
-        mov ah, 25h
-        mov al, 60h
-        int 21h
+        mov ah, 25H
+        mov al, 60H
+        int 21H
         pop ds
         sti
 
