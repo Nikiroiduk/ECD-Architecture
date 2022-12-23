@@ -32,11 +32,11 @@ ExitProcess proto :dword
     format db 'Proc 1: Y = %d', 0AH, 0DH,
               'Proc 2: Y2 = %d', 0
 
-    A dd 5
+    A dd 0
     B dd 0
-    X dd -1
+    X dd 0
 
-    A1 dd 10
+    A1 dd 200
     A2 dd 200
 .data?
     Y dd ?

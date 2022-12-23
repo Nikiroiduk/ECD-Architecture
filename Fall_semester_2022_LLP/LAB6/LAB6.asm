@@ -65,7 +65,7 @@ WNDCLASSEXA ends
     MainWindowClassName   db 'WinClass', 0
     AppName               db 'LAB6', 0
     SumButtonClassName    db 'sumBtnClass', 0
-    SumButtonText         db 'Calc sum', 0
+    SumButtonText         db 'Calcsum', 0
     EditClassName         db 'EditClass', 0
 .data?
     hwndSumBtn            dd ?
@@ -103,6 +103,7 @@ WNDCLASSEXA ends
     WS_SYSMENU          equ 80000H
     WS_CAPTION          equ 0C00000H
     WS_EX_CLIENTEDGE    equ 00000200H
+    WS_EX_STATICEDGE    equ 00020000h
     WS_VISIBLE          equ 10000000H
     WS_CHILD            equ 40000000H
     WS_OVERLAPPEDWINDOW equ WS_OVERLAPPED  or \
